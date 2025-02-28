@@ -2,15 +2,16 @@ import { Client } from "pg";
 
 async function query(clientObject) {
   const client = new Client({
-    localhost: process.env.POSTGRES_LOCALHOST,
+    host: process.env.POSTGRES_LOCALHOST,
     port: process.env.POSTGRES_PORT,
     user: process.env.POSTGRES_USER,
     database: process.env.POSTGRES_DB,
     password: process.env.POSTGRES_PASSWORD,
+    ssl: process.env.NODE_ENV === "development" ? false : true,
   });
 
   console.log("Credenciais do banco", {
-    localhost: process.env.POSTGRES_LOCALHOST,
+    host: process.env.POSTGRES_LOCALHOST,
     port: process.env.POSTGRES_PORT,
     user: process.env.POSTGRES_USER,
     database: process.env.POSTGRES_DB,
