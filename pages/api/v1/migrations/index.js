@@ -32,9 +32,9 @@ export default async function migrations(request, response) {
     if (migratedMigrations.length > 0) {
       return response.status(201).json(migratedMigrations);
     }
-
     return response.status(200).json(migratedMigrations);
   }
 
+  await dbClientInstance.end();
   return response.status(405);
 }
