@@ -38,6 +38,7 @@ export default async function migrations(request, response) {
 
     return response.status(405);
   } catch (e) {
-    console.log(e);
+    console.error(e);
+    throw e;
   }
 }
