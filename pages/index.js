@@ -7,8 +7,4 @@ function Home() {
   );
 }
 
-function teste() {
-  print("Identação erradaaaa");
-}
-
 export default Home;
