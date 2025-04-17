@@ -1,4 +1,5 @@
 import database from "infra/database";
+// eslint-disable-next-line no-unused-vars
 import jestConfig from "jest.config";
 import orchestrator from "tests/orchestrator.js";
 
