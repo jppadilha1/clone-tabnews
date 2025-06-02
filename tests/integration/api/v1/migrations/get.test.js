@@ -1,11 +1,10 @@
-import database from "infra/database";
 // eslint-disable-next-line no-unused-vars
 import jestConfig from "jest.config";
 import orchestrator from "tests/orchestrator.js";
 
 beforeAll(async () => {
   await orchestrator.waitForAllServices();
-  await database.query("drop schema public cascade; create schema public;");
+  await orchestrator.clearDatabase();
 });
 
 describe("GET api/v1/migrations", () => {
