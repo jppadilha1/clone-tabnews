@@ -56,3 +56,21 @@ export class MethodNotAllowedError extends Error {
     };
   }
 }
+
+export class MigrationServiceError extends Error {
+  constructor({ cause }) {
+    super("Erro ao utilizar o serviço das migrations.", { cause });
+    this.name = "MigrationServiceError";
+    this.action = "Verifique se houve algum erro de configuração.";
+    this.status_code = 500;
+  }
+
+  toJSON() {
+    return {
+      name: this.name,
+      message: this.message,
+      action: this.action,
+      status_code: this.status_code,
+    };
+  }
+}
