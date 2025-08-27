@@ -60,7 +60,8 @@ export class NotFoundError extends Error {
   constructor({ cause, message, action }) {
     super(message || "Um erro na busca ocorreu", { cause });
     this.name = "NotFoundError";
-    this.action = action || "Verifique se os parâmetros enviados estão corretos.";
+    this.action =
+      action || "Verifique se os parâmetros enviados estão corretos.";
     this.status_code = 404;
   }
 
@@ -73,7 +74,6 @@ export class NotFoundError extends Error {
     };
   }
 }
-
 
 export class MethodNotAllowedError extends Error {
   constructor() {

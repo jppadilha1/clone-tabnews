@@ -22,7 +22,7 @@ exports.up = (pgm) => {
 
     // Why 60 in length? https://www.npmjs.com/package/bcrypt#hash-info
     password: {
-      type: "varchar(60)", 
+      type: "varchar(60)",
       notNull: true,
     },
 

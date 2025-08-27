@@ -13,7 +13,6 @@ beforeAll(async () => {
 
 describe("GET api/v1/users/[username]", () => {
   describe("Anonymous user", () => {
-
     test("With exact case match", async () => {
       const response1 = await fetch("http://localhost:3000/api/v1/users/", {
         method: "POST",
@@ -29,7 +28,9 @@ describe("GET api/v1/users/[username]", () => {
 
       expect(response1.status).toBe(201);
 
-      const response2 = await fetch("http://localhost:3000/api/v1/users/SameCase1")
+      const response2 = await fetch(
+        "http://localhost:3000/api/v1/users/SameCase1",
+      );
 
       expect(response2.status).toBe(200);
 
@@ -49,8 +50,9 @@ describe("GET api/v1/users/[username]", () => {
     });
 
     test("With noneexistent user", async () => {
-
-      const response = await fetch("http://localhost:3000/api/v1/users/UsuarioInexistente")
+      const response = await fetch(
+        "http://localhost:3000/api/v1/users/UsuarioInexistente",
+      );
 
       expect(response.status).toBe(404);
 
@@ -59,9 +61,8 @@ describe("GET api/v1/users/[username]", () => {
         name: "NotFoundError",
         message: "O username informado não foi encontrado no sistema.",
         action: "Verifique se o username está digitado corretamente.",
-        status_code: 404
+        status_code: 404,
       });
     });
-    
   });
 });

@@ -1,11 +1,10 @@
 import database from "infra/database.js";
-import { MethodNotAllowedError, NotFoundError, ValidationError } from "infra/errors.js";
+import { NotFoundError, ValidationError } from "infra/errors.js";
 
 async function findOneByUsername(username) {
   const foundUser = await runSelectQuery(username);
 
   return foundUser;
-
 
   async function runSelectQuery(username) {
     const results = await database.query({
@@ -30,10 +29,8 @@ async function findOneByUsername(username) {
       });
     }
 
-    return results.rows[0]
+    return results.rows[0];
   }
-
-
 }
 
 async function create(userInputValues) {
@@ -110,7 +107,7 @@ async function create(userInputValues) {
 
 const user = {
   create,
-  findOneByUsername
+  findOneByUsername,
 };
 
 export default user;
