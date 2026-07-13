@@ -47,12 +47,17 @@ describe("POST api/v1/users", () => {
 
       const userInDatabase = await user.findOneByUsername("jppadilha");
 
-      const correctPasswordMatch = await password.compare("123", userInDatabase.password)
+      const correctPasswordMatch = await password.compare(
+        "123",
+        userInDatabase.password,
+      );
       expect(correctPasswordMatch).toBe(true);
 
-      const inCorrectPasswordMatch = await password.compare("12345678", userInDatabase.password)
+      const inCorrectPasswordMatch = await password.compare(
+        "12345678",
+        userInDatabase.password,
+      );
       expect(inCorrectPasswordMatch).toBe(false);
-
     });
 
     test("With duplicate 'email'", async () => {

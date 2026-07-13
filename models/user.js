@@ -87,7 +87,7 @@ async function create(userInputValues) {
   }
 
   async function hashPasswordInObject(userInputValues) {
-    const hashedPassword = await password.hash(userInputValues.password)
+    const hashedPassword = await password.hash(userInputValues.password);
     userInputValues.password = hashedPassword;
   }
 
