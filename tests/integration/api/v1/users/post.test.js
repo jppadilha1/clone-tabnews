@@ -4,6 +4,8 @@ import { ValidationError } from "infra/errors";
 import jestConfig from "jest.config";
 import orchestrator from "tests/orchestrator.js";
 import { version as uuidVersion } from "uuid";
+import user from "models/user.js";
+import password from "models/password.js";
 
 beforeAll(async () => {
   await orchestrator.waitForAllServices();
@@ -22,7 +24,7 @@ describe("POST api/v1/users", () => {
         body: JSON.stringify({
           username: "jppadilha",
           email: "jppadilhadev@gmail.com",
-          password: 123,
+          password: "123",
         }),
       });
 
@@ -34,7 +36,7 @@ describe("POST api/v1/users", () => {
         id: responseBody.id,
         username: "jppadilha",
         email: "jppadilhadev@gmail.com",
-        password: "123",
+        password: responseBody.password,
         created_at: responseBody.created_at,
         updated_at: responseBody.updated_at,
       });
@@ -42,6 +44,15 @@ describe("POST api/v1/users", () => {
       expect(uuidVersion(responseBody.id)).toBe(4);
       expect(Date.parse(responseBody.created_at)).not.toBeNaN();
       expect(Date.parse(responseBody.updated_at)).not.toBeNaN();
+
+      const userInDatabase = await user.findOneByUsername("jppadilha");
+
+      const correctPasswordMatch = await password.compare("123", userInDatabase.password)
+      expect(correctPasswordMatch).toBe(true);
+
+      const inCorrectPasswordMatch = await password.compare("12345678", userInDatabase.password)
+      expect(inCorrectPasswordMatch).toBe(false);
+
     });
 
     test("With duplicate 'email'", async () => {
@@ -53,7 +64,7 @@ describe("POST api/v1/users", () => {
         body: JSON.stringify({
           username: "testeduplicado",
           email: "testeduplicado@gmail.com",
-          password: 123,
+          password: "123",
         }),
       });
 
@@ -67,7 +78,7 @@ describe("POST api/v1/users", () => {
         body: JSON.stringify({
           username: "testeduplicado",
           email: "testeduplicado@gmail.com",
-          password: 123,
+          password: "123",
         }),
       });
 
@@ -92,7 +103,7 @@ describe("POST api/v1/users", () => {
         body: JSON.stringify({
           username: "testeduplicado1",
           email: "testeduplicado1@gmail.com",
-          password: 123,
+          password: "123",
         }),
       });
 
@@ -106,7 +117,7 @@ describe("POST api/v1/users", () => {
         body: JSON.stringify({
           username: "testeduplicado1",
           email: "testeduplicado2@gmail.com",
-          password: 123,
+          password: "123",
         }),
       });
 
