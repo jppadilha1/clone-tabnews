@@ -279,10 +279,18 @@ describe("PATCH api/v1/users/[username]", () => {
       expect(Date.parse(responseBody.updated_at)).not.toBeNaN();
       expect(responseBody.updated_at > responseBody.created_at).toBe(true);
 
-      const currentPassword = await user.findOneByUsername(responseBody.username);
-      
-      const NewisMatching = await password.compare("456", currentPassword.password);
-      const oldisMatching = await password.compare("123", currentPassword.password);
+      const currentPassword = await user.findOneByUsername(
+        responseBody.username,
+      );
+
+      const NewisMatching = await password.compare(
+        "456",
+        currentPassword.password,
+      );
+      const oldisMatching = await password.compare(
+        "123",
+        currentPassword.password,
+      );
       expect(NewisMatching).toBe(true);
       expect(oldisMatching).toBe(false);
     });

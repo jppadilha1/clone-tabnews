@@ -118,12 +118,12 @@ async function update(username, userInputValues) {
     await ValidateUniqueEmail(userInputValues.email);
   }
 
-  if ("password" in userInputValues)  {
+  if ("password" in userInputValues) {
     await hashPasswordInObject(userInputValues);
   }
 
   const userWithNewValues = { ...currentUser, ...userInputValues };
-  
+
   const updatedUser = await runUpdateQuery(userWithNewValues);
 
   return updatedUser;
@@ -150,17 +150,17 @@ async function update(username, userInputValues) {
         userWithNewValues.email,
         userWithNewValues.password,
         userWithNewValues.created_at,
-      ]
-    })
+      ],
+    });
 
     return results.rows[0];
   }
 }
 
 async function hashPasswordInObject(userInputValues) {
-    const hashedPassword = await password.hash(userInputValues.password);
-    userInputValues.password = hashedPassword;
-  }
+  const hashedPassword = await password.hash(userInputValues.password);
+  userInputValues.password = hashedPassword;
+}
 
 const user = {
   create,
