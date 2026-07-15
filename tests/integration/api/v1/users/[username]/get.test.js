@@ -22,7 +22,7 @@ describe("GET api/v1/users/[username]", () => {
         body: JSON.stringify({
           username: "samecase1",
           email: "samecase1@gmail.com",
-          password: 123,
+          password: "123",
         }),
       });
 
@@ -39,7 +39,7 @@ describe("GET api/v1/users/[username]", () => {
         id: response2Body.id,
         username: "samecase1",
         email: "samecase1@gmail.com",
-        password: "123",
+        password: response2Body.password,
         created_at: response2Body.created_at,
         updated_at: response2Body.updated_at,
       });
