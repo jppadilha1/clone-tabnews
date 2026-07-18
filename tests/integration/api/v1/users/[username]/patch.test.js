@@ -101,7 +101,7 @@ describe("PATCH api/v1/users/[username]", () => {
     });
 
     test("With unique 'username'", async () => {
-      const uniqueUser = await orchestrator.createUser()
+      const uniqueUser = await orchestrator.createUser();
 
       const response = await fetch(
         `http://localhost:3000/api/v1/users/${uniqueUser.username}`,
@@ -135,7 +135,7 @@ describe("PATCH api/v1/users/[username]", () => {
     });
 
     test("With unique 'email'", async () => {
-      const uniqueEmailUser = await orchestrator.createUser()
+      const uniqueEmailUser = await orchestrator.createUser();
 
       const response = await fetch(
         `http://localhost:3000/api/v1/users/${uniqueEmailUser.username}`,
@@ -169,7 +169,7 @@ describe("PATCH api/v1/users/[username]", () => {
     });
 
     test("With unique 'password'", async () => {
-      const uniquePasswordUser = await orchestrator.createUser()
+      const uniquePasswordUser = await orchestrator.createUser();
 
       const response = await fetch(
         `http://localhost:3000/api/v1/users/${uniquePasswordUser.username}`,
