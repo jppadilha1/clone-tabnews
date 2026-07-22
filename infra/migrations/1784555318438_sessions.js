@@ -7,14 +7,14 @@ exports.up = (pgm) => {
     },
 
     token: {
-        type: "varchar(96)",
-        notNull: true,
-        unique: true
+      type: "varchar(96)",
+      notNull: true,
+      unique: true,
     },
 
     user_id: {
-        type: "uuid",
-        notNull: true,
+      type: "uuid",
+      notNull: true,
     },
 
     expires_at: {
