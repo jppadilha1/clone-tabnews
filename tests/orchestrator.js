@@ -42,7 +42,7 @@ async function createUser(userObject) {
 }
 
 async function createSession(userId) {
-  return await session.create(userId)
+  return await session.create(userId);
 }
 
 const orchestrator = {
@@ -50,7 +50,7 @@ const orchestrator = {
   clearDatabase,
   runPendingMigrations,
   createUser,
-  createSession
+  createSession,
 };
 
 export default orchestrator;
