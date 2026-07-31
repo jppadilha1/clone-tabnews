@@ -1,5 +1,5 @@
-import * as cookie from 'cookie'
-import session from 'models/session';
+import * as cookie from "cookie";
+import session from "models/session";
 import {
   MethodNotAllowedError,
   InternalServerError,
@@ -52,7 +52,7 @@ const controller = {
     onNoMatch: onNoMatchHandler,
     onError: onErrorHandler,
   },
-  setSessionCookie
+  setSessionCookie,
 };
 
 export default controller;
